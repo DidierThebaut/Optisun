@@ -168,6 +168,34 @@
         © 2026 OptiSun. Tous droits réservés.
     </div>
 </footer>
+<script src="https://cdn.jsdelivr.base/supabase-js@2script>
 
+<script>
+const supabaseUrl = "https://vnfzzolrcbleyijlfvcfr.supabase.co";
+
+const supabaseKey = "sb_secret_ZtnwMvCKMI27sA5ucWRd_w_x7BBPe1N
+";
+
+const supabase = window.supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
+
+async function chargerProduits() {
+
+  const { data, error } = await supabase
+    .from('promo_solaires')
+    .select('*');
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  console.log(data);
+}
+
+chargerProduits();
+</script>
 </body>
 </html>

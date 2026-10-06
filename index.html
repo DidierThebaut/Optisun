@@ -168,13 +168,11 @@
         © 2026 OptiSun. Tous droits réservés.
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.base/supabase-js@2script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const supabaseUrl = "https://vnfzzolrcbleyijlfvcfr.supabase.co";
-
-const supabaseKey = "sb_secret_ZtnwMvCKMI27sA5ucWRd_w_x7BBPe1N
-";
+const supabaseKey = "sb_publishable_ZNFJfyWS7Yf0ZgbdBwl-Lw_VomE-lA1";
 
 const supabase = window.supabase.createClient(
   supabaseUrl,
@@ -182,7 +180,6 @@ const supabase = window.supabase.createClient(
 );
 
 async function chargerProduits() {
-
   const { data, error } = await supabase
     .from('promo_solaires')
     .select('*');

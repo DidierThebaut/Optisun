@@ -5,6 +5,8 @@
 <title>OptiSun</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
+<script src="api/produits.js" defer></script>
+<script src="api/script.js" defer></script>
 </head>
 <body>
 
@@ -21,7 +23,7 @@
     <div class="header-actions">
         <a href="#">Aide</a>
         <a href="#">Mon compte</a>
-        <a href="#" class="btn-primary">Panier</a>
+       <a href="panier.html" class="btn-primary">Panier (<span id="compteur">0</span>)</a>
     </div>
 </header>
 
@@ -76,34 +78,50 @@
 
 <section class="section">
     <h2 class="section-title">Best-sellers</h2>
+    
     <div class="products-grid">
         <div class="product-card">
-            <img src="https://via.placeholder.com/260x180?text=Ray-Ban" alt="Lunettes Ray-Ban">
-            <h4>Ray-Ban Aviator Classic</h4>
+             <button onclick="ajouterAuPanier(1, 'Ray-Ban Wayfarer', 149, 'img/wayfarer.webp')">
+ Ajouter au panier
+</button>
+            <img src="img/wayfarer.webp" alt="Lunettes Ray-Ban">
+            <h4>Ray-Ban wayfarer</h4>
             <div class="brand">Ray-Ban</div>
             <div class="price">149,00 €</div>
             <a href="#">Voir le produit</a>
+           
         </div>
         <div class="product-card">
-            <img src="https://via.placeholder.com/260x180?text=Oakley" alt="Lunettes Oakley">
-            <h4>Oakley Holbrook</h4>
-            <div class="brand">Oakley</div>
+           <button onclick="ajouterAuPanier(2, 'Holbrok', 129, 'img/holbrok.webp')">
+ Ajouter au panier
+</button>
+            <img src="img/holbrok.webp" alt="Lunettes Holbrok">
+            <h4>Holbrook</h4>
+            <div class="brand">Holbrok</div>
             <div class="price">129,00 €</div>
             <a href="#">Voir le produit</a>
+           
         </div>
         <div class="product-card">
-            <img src="https://via.placeholder.com/260x180?text=Persol" alt="Lunettes Persol">
-            <h4>Persol PO0649</h4>
-            <div class="brand">Persol</div>
+                      <button onclick="ajouterAuPanier(3, 'Clubmaster', 189, 'img/clubmaster.webp')">
+ Ajouter au panier
+</button>
+            <img src="img/clubmaster.webp" alt="Lunettes Clubmaster">
+            <h4>Clubmaster</h4>
+            <div class="brand">Clumsater</div>
             <div class="price">189,00 €</div>
             <a href="#">Voir le produit</a>
+  
         </div>
         <div class="product-card">
-            <img src="https://via.placeholder.com/260x180?text=Collection+Maison" alt="Lunettes maison">
+        <button onclick="ajouterAuPanier(4, 'OptiSun Urban', 89, 'img/sutro.webp')">
+ Ajouter au panier</button>
+            <img src="img/sutro.webp" alt="earl">
             <h4>OptiSun Urban</h4>
             <div class="brand">Collection OptiSun</div>
             <div class="price">89,00 €</div>
             <a href="#">Voir le produit</a>
+            
         </div>
     </div>
 </section>
@@ -171,25 +189,25 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const supabaseUrl = "https://vnfzzolrcbleyijlfvcfr.supabase.co";
+const supabaseUrl = "https://vnfzzolrcbleyjlfvcfr.supabase.co";
 const supabaseKey = "sb_publishable_ZNFJfyWS7Yf0ZgbdBwl-Lw_VomE-lA1";
 
-const supabase = window.supabase.createClient(
+const client = window.supabase.createClient(
   supabaseUrl,
   supabaseKey
 );
 
 async function chargerProduits() {
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from('promo_solaires')
     .select('*');
 
   if (error) {
-    console.error(error);
+    console.error('Erreur Supabase :', error.message);
     return;
   }
 
-  console.log(data);
+  console.log('Produits chargés :', data);
 }
 
 chargerProduits();
